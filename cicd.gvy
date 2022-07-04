@@ -60,14 +60,14 @@ pipeline {
 	         steps {
               withDockerRegistry(credentialsId: 'DOCKER_HUB_LOGIN', url: 'https://index.docker.io/v1/') {
                     sh script: 'cd  $WORKSPACE'
-                    sh script: 'docker build --file Dockerfile --tag docker.io/neyo101/petclinic:$BUILD_NUMBER .'
-                    sh script: 'docker push docker.io/neyo101/petclinic:$BUILD_NUMBER'
+                    sh script: 'sudo docker build --file Dockerfile --tag docker.io/neyo101/petclinic:$BUILD_NUMBER .'
+                    sh script: 'sudo docker push docker.io/neyo101/petclinic:$BUILD_NUMBER'
               }	
            }		
         }
     stage('Deploy-App-qa') {
   	   steps {
-              sh 'ansible-playbook --inventory /tmp/inv $WORKSPACE/deploy/deploy-kube.yml --extra-vars "env=qa build=$BUILD_NUMBER"'
+              sh 'sudo ansible-playbook --$WORKSPACE/deploy/deploy-kube.yml --extra-vars "env=qa build=$BUILD_NUMBER"'
 	   }
 	   post { 
               always { 
