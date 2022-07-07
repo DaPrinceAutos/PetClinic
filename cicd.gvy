@@ -7,6 +7,7 @@ pipeline {
                 echo 'compiling..'
 		            git url: 'https://github.com/DaPrinceAutos/PetClinic'
 		            sh script: '/opt/maven/bin/mvn compile'
+                         sh 'whoiam'
            }
         }
         stage('codereview-pmd') {
