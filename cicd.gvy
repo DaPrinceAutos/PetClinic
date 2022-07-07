@@ -67,6 +67,7 @@ pipeline {
         }
     stage('Deploy-App-qa') {
   	   steps {
+                   sh 'export KUBECONFIG=/var/lib/jenkins/config'
               sh 'ansible-playbook $WORKSPACE/deploy/deploy-kube.yml --extra-vars "env=qa build=$BUILD_NUMBER"'
 	   }
 	   post { 
