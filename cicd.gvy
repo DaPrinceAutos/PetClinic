@@ -5,9 +5,10 @@ pipeline {
 	         steps {
                 // step1 
                 echo 'compiling..'
+                          sh 'whoami'
 		            git url: 'https://github.com/DaPrinceAutos/PetClinic'
 		            sh script: '/opt/maven/bin/mvn compile'
-                         sh 'whoiam'
+                         sh 'whoami'
            }
         }
         stage('codereview-pmd') {
